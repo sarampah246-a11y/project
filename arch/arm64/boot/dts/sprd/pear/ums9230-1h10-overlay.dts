@@ -1,0 +1,478 @@
+/dts-v1/;
+/plugin/;
+#include <dt-bindings/input/input.h>
+#include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/interrupt-controller/arm-gic.h>
+#include <dt-bindings/clock/sprd,ums9230-clk.h>
+#include <dt-bindings/mfd/sprd,sc2730-regs.h>
+#include <dt-bindings/mfd/sprd,sc2730-mask.h>
+#include <dt-bindings/usb/pd.h>
+
+#include "../lcd/lcd_icnl9916_mipi_hd.dtsi"
+#include "../lcd/lcd_fs8057s_mipi_hd.dtsi"
+/*#include "../lcd/lcd_td4375_mipi_fhd.dtsi"*/
+#include "../lcd/lcd_dummy_mipi.dtsi"
+#include "../ums9230-wcn.dtsi"
+/*#include <dt-bindings/wdv/wdv.h>*/
+
+/ {
+
+	model = "Spreadtrum UMS9230 1H10 Board";
+
+	compatible = "sprd,ums9230-1h10";
+
+	sprd,sc-id = "ums9230 1h10 1000";
+
+	sprd,board_id = <0x1100>; //XX00:base board,XX00~XXFF:customize board
+
+	fragment {
+		target-path = "/";
+		__overlay__ {
+			pwm_backlight: sprd_backlight {
+				compatible = "sprd,sharkl6-backlight";
+				pwms = <&pwms 2 40000>;
+				pwm-names = "backlight";
+				sprd,max-brightness-level = <1023>;
+				sprd,min-brightness-level = <11>;
+				default-brightness-level = <262>;
+				sprd,brightness-scale = <1023>;
+				brightness-levels = <
+					                0   11  11  12  16  20
+					24  28  32  36  40  44  48  52  56  60
+					64  68  72  76  80  84  88  92  96  100
+					104 108 112 116 120 124 128 132 136 140
+					144 148 152 156 160 164 168 172 176 180
+					184 188 192 196 200 204 208 212 216 220
+					224 228 232 236 240 244 248 252 256 260
+					264 268 272 276 280 284 288 292 296 300
+					304 308 312 316 320 324 328 332 336 341
+					345 349 353 357 361 365 369 373 377 381
+					385 389 393 397 401 405 409 413 417 421
+					425 429 433 437 441 445 449 453 457 461
+					465 469 473 477 481 485 489 493 497 501
+					505 509 513 517 521 525 529 533 537 541
+					545 549 553 557 561 565 569 573 577 581
+					585 589 593 597 601 605 609 613 617 621
+					625 629 633 637 641 645 649 653 657 661
+					665 669 673 677 682 686 690 694 698 702
+					706 710 714 718 722 726 730 734 738 742
+					746 750 754 758 762 766 770 774 778 782
+					786 790 794 798 802 806 810 814 818 822
+					826 830 834 838 842 846 850 854 858 862
+					866 870 874 878 882 886 890 894 898 902
+					906 910 914 918 922 926 930 934 938 942
+					946 950 954 958 962 966 970 974 978 982
+					986 990 994 998 1002 1006 1010 1014 1018 1023
+				>;
+			};
+			flash-gpios {
+				compatible = "sprd,flash-aw3641";
+				flash-ic = <3641>;
+				flash-torch-en-gpios = <&ap_gpio 139 0>;
+				flash-en-gpios = <&ap_gpio 32 0>;
+			};
+
+			gpio-keys {
+				compatible = "gpio-keys";
+
+				key-volumedown {
+					label = "Volume Down Key";
+					linux,code = <KEY_VOLUMEDOWN>;
+					gpios = <&ap_gpio 124 GPIO_ACTIVE_LOW>;
+					debounce-interval = <2>;
+					wakeup-source;
+				};
+
+				key-volumeup {
+					label = "Volume Up Key";
+					linux,code = <KEY_VOLUMEUP>;
+					gpios = <&pmic_eic 4 GPIO_ACTIVE_HIGH>;
+					debounce-interval = <2>;
+					wakeup-source;
+				};
+
+				key-power {
+					label = "Power Key";
+					linux,code = <KEY_POWER>;
+					gpios = <&pmic_eic 1 GPIO_ACTIVE_LOW>;
+					debounce-interval = <2>;
+					wakeup-source;
+				};
+			};
+
+			tboard_thermistor: thermal-sensor {
+				compatible = "generic-adc-thermal";
+				#thermal-sensor-cells = <0>;
+				io-channels = <&pmic_adc 1>;
+				io-channel-names = "sensor-channel";
+				temperature-lookup-table = <
+					(-39742) 1131
+					(-29777) 1110
+					(-19480) 1074
+					(-4679) 983
+					10110 838
+					24805 654
+					44922 413
+					54903 316
+					64895 238
+					74884 178
+					84883 133
+					94883 100
+					104880 75
+					114889 57
+					124872 43 >;
+			};
+
+			pa_thermistor: pa-sensor {
+				compatible = "generic-adc-thermal";
+				#thermal-sensor-cells = <0>;
+				io-channels = <&pmic_adc 2>;
+				io-channel-names = "sensor-channel";
+				temperature-lookup-table = <
+					(-39742) 1131
+					(-29777) 1110
+					(-19480) 1074
+					(-4679) 983
+					10110 838
+					24805 654
+					44922 413
+					54903 316
+					64895 238
+					74884 178
+					84883 133
+					94883 100
+					104880 75
+					114889 57
+					124872 43 >;
+			};
+
+			chg_thermistor: chg-sensor {
+				compatible = "generic-adc-thermal";
+				#thermal-sensor-cells = <0>;
+				io-channels = <&pmic_adc 4>;
+				io-channel-names = "sensor-channel";
+				temperature-lookup-table = <
+					(-39742) 1131
+					(-29777) 1110
+					(-19480) 1074
+					(-4679) 983
+					10110 838
+					24805 654
+					44922 413
+					54903 316
+					64895 238
+					74884 178
+					84883 133
+					94883 100
+					104880 75
+					114889 57
+					124872 43 >;
+			};
+
+			audio-voice-trig {
+				status = "disable";
+				compatible = "sprd,voice_trig";
+				irq_gpio = <&ap_gpio 169 GPIO_ACTIVE_HIGH>;
+			};
+
+			sprd_uid {
+				compatible = "sprd-uid";
+				nvmem-cells = <&uid_start>, <&uid_end>;
+				nvmem-cell-names = "uid_start", "uid_end";
+			};
+
+		};
+	};
+};
+
+&chosen {
+	bootargs_ext = "androidboot.hardware=ums9230_1h10 androidboot.dtbo_idx=0";
+};
+
+&reserved_memory {
+	#address-cells = <2>;
+	#size-cells = <2>;
+	wcn_reserved: wcn-mem@87000000 {
+		reg = <0x0 0x87000000 0x0 0x00800000>;
+	};
+
+	logo_reserved: logobuffer@9e000000{
+		reg = <0x0 0x9e000000 0x0 0x00ab0000>;
+	};
+#ifdef BSP_KERNEL_CONFIG_WIDEVINE_L1
+	/* Encrypt and decrypt widevine video */
+	oemcrypto_reserved: oemcrypto@b6100000 {
+		reg = <0x0 0xb6100000 0x0 0x01100000>;
+	};
+
+	/*Set 8M after widevine to prevent memory out of bounds*/
+	widevine_reserved: widevine@df400000 {
+		compatible = "shared-dma-pool";
+		reg = <0x0 0xdf400000 0x0 0x10400000>;
+		reusable;
+	};
+#endif
+};
+
+&thm_zone {
+	bd_thmzone: board-thmzone {
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
+		thermal-sensors = <&tboard_thermistor>;
+	};
+
+	pa_thmzone: pa-thmzone {
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
+		thermal-sensors = <&pa_thermistor>;
+	};
+
+	chg_thmzone: chg-thmzone {
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
+		thermal-sensors = <&chg_thermistor>;
+	};
+};
+
+
+&i2c5 {
+	status = "okay";
+	clock-frequency = <400000>;
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	ti65132b@3e {
+		compatible = "tps,ti65132b";
+		reg = <0x3e>;
+		zte,lcd-bl-vsp-vsn-enhance-enable;
+	};
+};
+
+
+
+&hsphy {
+	vdd-supply = <&vddusb33>;
+	extcon = <&extcon_gpio>;
+	sprd,hsphy-device-eye-pattern = <0x06a3d1c0>;
+	sprd,hsphy-host-eye-pattern = <0x04f3d1c0>;
+	status = "okay";
+};
+
+&usb {
+	extcon = <&extcon_gpio>, <&pmic_typec>;
+	vbus-supply = <&vddvbus>;
+	status = "okay";
+};
+
+&sdio0 {
+	cd-gpios = <&eic_sync 35 GPIO_ACTIVE_HIGH>;
+};
+
+&i2c2 {
+	status = "okay";
+	#address-cells = <1>;
+	#size-cells = <0>;
+	sec-nfc@27 {
+		compatible = "sec-nfc";
+		reg = <0x27>;
+		clock-names = "nfc_clk","source","enable";
+		clocks = <&aon_clk CLK_AUX2>, <&ext_26m>, <&aonapb_gate CLK_AUX2_EB>;
+		sec-nfc,ven-gpio = <&ap_gpio 63 0>;
+		sec-nfc,firm-gpio = <&ap_gpio 61 0>;
+		sec-nfc,irq-gpio = <&ap_gpio 62 0>;
+		sec-nfc,clk-req = <&ap_gpio 60 0>;
+	};
+
+};
+
+&i2c3 {
+	status = "okay";
+	#address-cells = <1>;
+	#size-cells = <0>;
+};
+
+&aon_i2c0 {
+	status = "okay";
+	clock-frequency = <1000000>;
+};
+
+
+
+&vddldo0 {
+	regulator-always-on;
+};
+
+&vddldo1 {
+	regulator-always-on;
+};
+
+&pmic_fgu {
+	fgu-capacity-track;
+	phys = <&hsphy>;
+
+	sprd,relax-counter-threshold = <580>;
+	sprd,relax-current-threshold = <30>;
+	sprd,capacity-sleep-calibration;
+
+	sprd,capacity-boot-calibration;
+	sprd,capacity-charge-cycle;
+	sprd,basp;
+};
+
+&panel {
+	sprd,backlight = <&pwm_backlight>;
+	avdd-gpio = <&ap_gpio 135 GPIO_ACTIVE_HIGH>;
+	avee-gpio = <&ap_gpio 136 GPIO_ACTIVE_HIGH>;
+	reset-gpio = <&ap_gpio 50 GPIO_ACTIVE_HIGH>;
+};
+
+&dpu {
+	sprd,logo-memory = <&logo_reserved>;
+
+	sprd,backlight = <&pwm_backlight>;
+};
+
+
+&pmic_fchg {
+	status = "okay";
+	sprd,input-voltage-microvolt = <5000000>;
+};
+
+&ddr_dfs {
+	  sprd-scene = "boost", "lcdon", "lcdoff", "camlow",
+			"camhigh", "camveryhigh", "faceid", "top", "boot-opt";
+	  sprd-freq = <1333 768 256 1333 1333 0xbacd 1333 0xbacd 0xbacd>;
+};
+
+&pin_controller {
+	pinctrl-names =
+	/* rfctl16 ,rfctl3, rfctl5 */
+	"gpio_8", "gpio_22", "gpio_24",
+	/* rfctl6, rfctl7, keyin0 */
+	"gpio_25", "gpio_26", "gpio_124",
+	/* bt_rfctl2 */
+	"gpio_175",
+	/*tp int,    tp rst*/
+	"gpio_144", "gpio_145",
+	/* spi3_csn, spi3_di, spi3_clk, spi3_do */
+	"gpio_94", "gpio_95", "gpio_96","gpio_97",
+	/*ctp i2c*/
+	"gpio_146", "gpio_147";
+
+	pinctrl-0 = <&gpio_8>;
+	pinctrl-1 = <&gpio_22>;
+	pinctrl-2 = <&gpio_24>;
+	pinctrl-3 = <&gpio_25>;
+	pinctrl-4 = <&gpio_26>;
+	pinctrl-5 = <&gpio_124>;
+	pinctrl-6 = <&gpio_175>;
+	pinctrl-7 = <&gpio_144>;
+	pinctrl-8 = <&gpio_145>;
+	pinctrl-9 = <&gpio_94>;
+	pinctrl-10 = <&gpio_95>;
+	pinctrl-11 = <&gpio_96>;
+	pinctrl-12 = <&gpio_97>;
+	pinctrl-13 = <&gpio_146>;
+	pinctrl-14 = <&gpio_147>;
+
+	gpio_8: rfctl16 {
+		pins = "QOGIRL6_RFCTL16";
+		function = "func4";
+	};
+
+	gpio_144: extint0 {
+		pins = "QOGIRL6_EXTINT0";
+		function = "func4";
+	};
+
+	gpio_145: extint1 {
+		pins = "QOGIRL6_EXTINT1";
+		function = "func4";
+	};
+
+	gpio_94: mems_mic_clk0 {
+		pins = "QOGIRL6_MEMS_MIC_CLK0";
+		function = "func4";
+	};
+
+	gpio_95: mems_mic_data0 {
+		pins = "QOGIRL6_MEMS_MIC_DATA0";
+		function = "func4";
+	};
+
+	gpio_96: mems_mic_clk1 {
+		pins = "QOGIRL6_MEMS_MIC_CLK1";
+		function = "func4";
+	};
+
+	gpio_97: mems_mic_data1 {
+		pins = "QOGIRL6_MEMS_MIC_DATA1";
+		function = "func4";
+	};
+
+	gpio_146: sda3 {
+		pins = "QOGIRL6_SDA3";
+		function = "func4";
+	};
+
+	gpio_147: scl3 {
+		pins = "QOGIRL6_SCL3";
+		function = "func4";
+	};
+
+	gpio_22: rfctl3 {
+		pins = "QOGIRL6_RFCTL3";
+		function = "func4";
+	};
+
+	gpio_24: rfctl5 {
+		pins = "QOGIRL6_RFCTL5";
+		function = "func4";
+	};
+
+	gpio_25: rfctl6 {
+		pins = "QOGIRL6_RFCTL6";
+		function = "func4";
+	};
+
+	gpio_26: rfctl7 {
+		pins = "QOGIRL6_RFCTL7";
+		function = "func4";
+	};
+
+	gpio_124: keyin0 {
+		pins = "QOGIRL6_KEYIN0";
+		function = "func4";
+	};
+
+	gpio_175: bt_rfctl2 {
+		pins = "QOGIRL6_BT_RFCTL2";
+		function = "func4";
+	};
+};
+
+&ion {
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+#ifdef BSP_KERNEL_CONFIG_WIDEVINE_L1
+	heap@7 {
+		reg = <7>;
+		label = "carveout_oemcrypto";
+		type = <2>;
+		memory-region = <&oemcrypto_reserved>;
+	};
+#endif
+};
+
+&adi_bus {
+	sprd,hw-channels = <2 0x18cc>, <3 0x18cc>, <13 0x1874>, <15 0x1874>,
+			<17 0x1844>, <19 0x1854>, <21 0x1864>, <30 0x1820>,
+			<32 0x197c>, <33 0x1988>, <35 0x19b8>, <39 0x19ac>;
+	sprd,hw-channels0 = <2 0x18cc>, <3 0x18cc>, <13 0x1874>, <15 0x1874>,
+			<17 0x1844>, <19 0x1854>, <21 0x1864>, <30 0x1820>,
+			<32 0x197c>, <33 0x1988>, <35 0x19b8>, <39 0x19ac>;
+	sprd,hw-channels1 = <2 0x18cc>, <3 0x18cc>, <13 0x1854>, <15 0x1874>,
+			<17 0x1844>, <19 0x1844>, <21 0x1864>, <30 0x1820>,
+			<32 0x197c>, <33 0x1988>, <35 0x19b8>, <39 0x19ac>;
+};

@@ -1,0 +1,30 @@
+/* add zte skey start */
+&i2c2 {
+	status = "okay";
+	aw9620x_skey@12 {
+		compatible = "awinic,aw_sar";
+		reg = <0x12>;
+		sar-num = < 0 >;
+		irq-gpio = <&ap_gpio 53 0>;
+		chip_name = "AW96205";
+		channel_use_flag = <0x1f>;
+		aw_sar,update_fw;
+		status = "okay" ;
+	};
+};
+
+&i2c3 {
+	status = "okay";
+	aw9620x_skey@12 {
+		compatible = "awinic,aw_sar";
+		reg = <0x12>;
+		sar-num = < 1 >;
+		irq-gpio = <&ap_gpio 30 0>;
+		chip_name = "AW96205";
+		channel_use_flag = <0x1f>;
+		aw_sar,update_fw;
+		status = "okay" ;
+	};
+};
+
+/* add zte skey end */

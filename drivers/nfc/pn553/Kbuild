@@ -1,0 +1,13 @@
+obj-$(CONFIG_NXP_NFC_I2C) += zte_nfc.o
+
+zte_nfc-$(CONFIG_NXP_NFC_I2C) += common.o \
+               common_ese.o \
+               i2c_drv.o
+
+ccflags-y += -DDYNAMIC_DEBUG_MODULE
+
+$(info CONFIG_SPRD_PMIC_REFOUT = ${CONFIG_SPRD_PMIC_REFOUT})
+ifeq ($(CONFIG_SPRD_PMIC_REFOUT),m)
+    CONFIG_SPRD_PMIC_REFOUT_SL6550 :=y
+    ccflags-y += -DCONFIG_SPRD_PMIC_REFOUT_SL6550=$(CONFIG_SPRD_PMIC_REFOUT_SL6550)
+endif

@@ -1,0 +1,44 @@
+/* add zte sar start */
+&i2c2 {
+	status = "okay";
+	aw9160x_sar@13 {
+		compatible = "awinic,aw9610x_sar";
+		reg = <0x13>;
+
+		irq-gpio = <&ap_gpio 55 0>;
+		chip_name = "AW96103";
+		status = "okay" ;
+	};
+
+	stk501xx_sar@2c {
+		compatible = "stk,stk501xx";
+		reg = <0x2c>;
+
+		stk501xx,irq-gpio = <&ap_gpio 55 0>;
+		chip_name = "STK50153";
+		status = "okay" ;
+	};
+};
+
+&i2c3 {
+	status = "okay";
+	aw9160x_sar@13 {
+		compatible = "awinic,aw9610x_sar_2";
+		reg = <0x13>;
+
+		irq-gpio = <&ap_gpio 52 0>;
+		chip_name = "AW96103";
+		status = "okay" ;
+	};
+
+	stk501xx_sar@2c {
+		compatible = "stk,stk501xx_2";
+		reg = <0x2c>;
+
+		stk501xx,irq-gpio = <&ap_gpio 52 0>;
+		chip_name = "STK50153";
+		status = "okay" ;
+	};
+};
+
+/* add zte sar end */

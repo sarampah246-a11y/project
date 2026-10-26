@@ -1,0 +1,24 @@
+&i2s0 {
+	status = "okay";
+};
+
+&sprd_audio_codec_ana {
+	status = "okay";
+	digital-codec = <&sprd_audio_codec_dig>;
+};
+
+&sprd_headset {
+	status = "okay";
+	sprd,spk-route-hp;
+};
+
+&sound_vbc_r1p0v3_sprd_codec {
+	status = "okay";
+	/*ext_control_type, hook selection, mode, gpio share*/
+	sprd,spk-ext-pa-info = <0 0 2 0>;
+	sprd,spk-ext-pa-gpio = <&ap_gpio 62 0>;
+};
+
+&sound_sprd_ap_alliis {
+	status = "okay";
+};

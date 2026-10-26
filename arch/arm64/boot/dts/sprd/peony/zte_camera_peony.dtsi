@@ -1,0 +1,114 @@
+
+
+&i2c0 {
+	status = "okay";
+	clock-frequency = <1000000>;
+
+	// main camera: HI1336 or HI5021Q
+	sensor_main: sensor-main@20 {
+		compatible = "sprd,sensor-main";
+		reg = <0x20>;
+		clock-names = "clk_src","sensor_eb",
+			"clk_96m","clk_76m8",
+			"clk_48m","clk_26m";
+		clocks = <&mm_clk CLK_SENSOR1>,<&mm_gate CLK_MM_SENSOR1_EB>,
+				<&pll1 CLK_TWPLL_96M>,<&pll1 CLK_TWPLL_76M8>,
+				<&pll1 CLK_TWPLL_48M>,<&ext_26m>;
+		vddio-supply = <&vddcamio>;
+		dvdd-gpios = <&ap_gpio 112 0>;
+		avdd-gpios = <&ap_gpio 137 0>;
+		vddcammot-supply = <&vddcammot>;
+		reset-gpios = <&ap_gpio 45 0>;
+		sprd,phyid = <0>;
+		csi = <&csi0>;
+		power-domains = <&mm_domain>;
+	};
+
+};
+
+&i2c1 {
+	status = "okay";
+	clock-frequency = <400000>;
+
+	//front camera: gc5035 or sc500sc
+	sensor_sub: sensor-sub@3f {
+		compatible = "sprd,sensor-sub";
+		reg = <0x3f>;
+		clock-names = "clk_src","sensor_eb",
+			"clk_96m","clk_76m8",
+			"clk_48m","clk_26m";
+		clocks = <&mm_clk CLK_SENSOR0>,<&mm_gate CLK_MM_SENSOR0_EB>,
+				<&pll1 CLK_TWPLL_96M>,<&pll1 CLK_TWPLL_76M8>,
+				<&pll1 CLK_TWPLL_48M>,<&ext_26m>;
+		vddio-supply = <&vddcamio>;
+		vddcamd-supply = <&vddcamd0>;
+		vddcammot-supply = <&vddcammot>;
+		avdd-gpios = <&ap_gpio 139 0>;
+		reset-gpios = <&ap_gpio 44 0>;
+		sprd,phyid = <2>;
+		csi = <&csi0>;
+		power-domains = <&mm_domain>;
+	};
+
+};
+
+&i2c5 {
+	flash_ic: flash-ic@63 {
+		compatible = "sprd,flash-aw36518_gpio";
+		reg = <0x63>;
+		sprd,flash-ic = <36518>;
+		sprd,torch = <1>;
+		sprd,preflash = <1>;
+		sprd,highlight = <1>;
+		sprd,torch-level = <10>;
+		sprd,preflash-level = <10>;
+		sprd,highlight-level = <15>;
+		sprd,lvfm-enable = <1>;
+		flash-torch-en-gpios = <&ap_gpio 138 0>;
+	};
+};
+
+&i2c6 {
+	status = "okay";
+	clock-frequency = <400000>;
+
+	//slaver camera: gc02m1b
+	sensor_main2: sensor-main2@6e {
+		compatible = "sprd,sensor-main2";
+		reg = <0x6e>;
+		clock-names = "clk_src","sensor_eb",
+			"clk_96m","clk_76m8",
+			"clk_48m","clk_26m";
+		clocks = <&mm_clk CLK_SENSOR2>,<&mm_gate CLK_MM_SENSOR2_EB>,
+			<&pll1 CLK_TWPLL_96M>,<&pll1 CLK_TWPLL_76M8>,
+			<&pll1 CLK_TWPLL_48M>,<&ext_26m>;
+		vddio-supply = <&vddcamio>;
+		vddcamd-supply = <&vddldo1>;
+		vddcammot-supply = <&vddcammot>;
+		vddcama-supply = <&vddcama0>;
+		reset-gpios = <&ap_gpio 41 0>;
+		sprd,phyid = <4>;
+		csi = <&csi1>;
+		power-domains = <&mm_domain>;
+	};
+
+	//micro camera: gc02m1 or sc200cs
+	sensor_sub2: sensor-sub2@5a {
+		compatible = "sprd,sensor-sub2";
+		reg = <0x5a>;
+		clock-names = "clk_src","sensor_eb",
+			"clk_96m","clk_76m8",
+			"clk_48m","clk_26m";
+		clocks = <&mm_clk CLK_SENSOR2>,<&mm_gate CLK_MM_SENSOR2_EB>,
+				<&pll1 CLK_TWPLL_96M>,<&pll1 CLK_TWPLL_76M8>,
+				<&pll1 CLK_TWPLL_48M>,<&ext_26m>;
+		vddio-supply = <&vddcamio>;
+		vddcamd-supply = <&vddldo1>;
+		vddcammot-supply = <&vddcammot>;
+		vddcama-supply = <&vddcama1>;
+		reset-gpios = <&ap_gpio 114 0>;
+		sprd,phyid = <3>;
+		csi = <&csi1>;
+		power-domains = <&mm_domain>;
+	};
+};

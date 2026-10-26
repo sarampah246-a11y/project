@@ -1,0 +1,5 @@
+config ZTE_SND_SOC_FS1599
+        tristate "SoC Audio for FourSemi PA FS1599N"
+        depends on I2C
+    help
+        This option enables support for FourSemi PA.

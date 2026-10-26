@@ -1,0 +1,9 @@
+/ {
+	chipone_fp {
+		compatible = "chipone,fingerprint";
+		fpreset-gpios = <&ap_gpio 169 0x00>;
+		fpint-gpios = <&eic_async 29 0x00>;
+		vdd-supply = <&vdd28>;
+		power-type = <1>;
+	};
+};

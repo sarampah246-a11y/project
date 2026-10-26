@@ -1,0 +1,37 @@
+/{
+	zte_tp:zte_tp {
+		compatible = "zte_tp";
+		zte,tp_algo;
+		zte,tp_long_press;
+		zte,tp_long_press_timer = <800>;
+		zte,tp_long_press_left_v = <12>;
+		zte,tp_long_press_right_v = <12>;
+		zte,tp_long_press_left_h = <16>; /*camera */
+		zte,tp_long_press_right_h = <12>; /*charger */
+		zte,tp_edge_click_suppression_pixel = <2>;
+	};
+};
+
+&spi1 {
+	#address-cells = <1>;
+	#size-cells = <0>;
+	status = "okay";
+	touch_spi@0 {
+		compatible = "chipone-tddi","focaltech,fts";
+		status = "okay";
+		reg = <0>;
+		spi-max-frequency = <6000000>;
+		ubl-max-freq = <2000000>;
+
+		//-----------chipone------------------//
+		chipone,rst-gpio = <&ap_gpio 145 0>;
+		chipone,irq-gpio = <&ap_gpio 121 0>;
+		chipone,x-res = <719>;
+		chipone,y-res = <1611>;
+		chipone,spi-mode = <3>;
+		focaltech,reset-gpio = <&ap_gpio 145 0>;
+		focaltech,irq-gpio = <&ap_gpio 121 0>;
+		focaltech,max-touch-number = <10>;
+		focaltech,display-coords =  <0 0 719 1611>;
+        };
+};

@@ -1,0 +1,141 @@
+
+/*
+ * ICNL9911C BOE LCD config dtsi file for spreadtrum
+ *
+ * Copyright (C) 2018, Spreadtrum Communications Inc.
+ *
+ * SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+ */
+/ {
+	fragment {
+		target-path = "/";
+		__overlay__ {
+			lcds {
+				lcd_icnl9916_mipi_hd_easyquick_chipone: lcd_icnl9916_mipi_hd_easyquick_chipone {
+					zte,panel-name = "BOE_YIKUAILAI_lcd_icnl9916_mipi_hd_chipone";
+					zte,lcd-init-code-version = "20230504_V2";
+					zte,lcd_bl_vsp_vsn_voltage = <0x14>;
+					zte,lcd-delay-open-bl-value = <30>;
+					zte,lcd-driver-num-value = <0x9916>;
+
+					sprd,dsi-work-mode = <1>; /* video burst mode*/
+					sprd,dsi-lane-number = <4>;
+					sprd,dsi-color-format = "rgb888";
+
+					sprd,phy-bit-clock = <810000>;	/* kbps */	/* dpi_clock*6*/
+					sprd,phy-escape-clock = <20000>;/* kHz */
+
+					sprd,width-mm = <67930>;/*zte mod for 6.56*/
+					sprd,height-mm = <152090>;/*zte mod for 6.56*/
+
+					sprd,esd-check-enable = <1>;
+					sprd,esd-check-mode = <1>;
+					sprd,esd-check-period = <1000>;
+					sprd,esd-check-register = <0x0A>;
+					sprd,esd-check-value = <0x9C>;
+
+					sprd,dpi-clk-div = <6>;
+					sprd,video-lp-cmd-enable = <1>;
+					sprd,hporch-lp-disable = <1>;
+					sprd,vrr-enable;
+
+					lcd-glass = "BOE";
+					lcd-module = "YIKUAILAI";
+					lcd-name = "ICNL9916";
+
+					sprd,reset-on-sequence = <1 15>, <0 1>, <1 15>;
+					sprd,reset-off-sequence = <1 20>;
+
+					sprd,use-dcs-write;
+					sprd,initial-command = [
+								39 00 00 03 F0 5A 59
+								39 00 00 03 F1 A5 A6
+								39 00 00 02 D4 31
+								39 00 00 05 C0 40 93 00 1F
+								39 00 00 21 C1 30 20 20 FC 04 4C 2C 04 4C 06 12 70 35 35 07 1F FF 4C 00 93 18 8F 04 00 00 00 00 00 00 00 00 00
+								39 00 00 02 C2 00
+								39 00 00 21 C4 04 33 B8 40 00 BC 00 E0 00 00 00 26 48 91 B3 75 00 04 E0 20 F0 00 00 00 00 00 00 00 00 00 00 00
+								39 00 00 21 C5 03 24 96 C8 3E 00 05 02 12 0C 00 32 3F 08 01 3F 10 20 C8 03 55 FF 01 14 38 7F 00 00 00 00 00 00
+								39 00 00 21 C6 5E 1F 15 2B 2B 28 3F 03 16 16 00 11 40 00 98 98 60 80 0C 00 00 00 00 00 00 00 00 00 00 00 00 00
+								39 00 00 04 C8 46 00 49
+								39 00 00 21 B2 95 96 05 04 FF 22 10 0C 88 80 80 80 80 00 00 00 00 77 75 77 75 00 00 00 00 55 55 10 20 11 00 00
+								39 00 00 21 B3 F7 09 09 09 81 63 00 00 5D 00 00 00 08 44 0C 00 00 03 00 00 0C 00 00 03 00 00 55 55 55 55 55 55
+								39 00 00 21 B4 31 01 01 01 81 00 00 00 00 00 00 00 08 00 0C 00 00 03 00 00 0C 00 00 03 00 00 55 55 55 55 55 55
+								39 00 00 21 B5 00 19 0A 19 0A C6 26 01 A2 33 44 00 26 00 59 7C 02 08 30 30 50 20 40 12 00 00 00 00 00 00 00 00
+								39 00 00 21 B6 00 00 33 00 04 08 0C 0E 10 12 14 16 18 1A 32 32 00 00 00 00 00 00 7F FF 00 20 03 00 00 00 00 00
+								39 00 00 21 B7 00 00 33 00 05 09 0D 0F 11 13 15 17 19 1B 32 32 00 00 00 00 00 00 7F FF 00 20 03 00 00 00 00 00
+								39 00 00 0D B8 55 55 55 55 55 55 55 55 55 55 55 55
+								39 00 00 21 B9 01 15 55 55 55 00 00 15 55 55 55 00 00 AA AA AA AA AA A0 AA AA AA AA AA A0 00 00 00 00 00 00 00
+								39 00 00 09 BB 01 02 03 0A 04 13 14 00
+								39 00 00 21 BC 00 00 00 00 04 00 FF F0 0B 33 50 49 33 33 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+								39 00 00 07 BD A1 A2 52 2E 00 8F
+								39 00 00 11 BE 0C 88 43 38 33 00 00 38 00 B2 AF B2 AF 00 00 33
+								39 00 00 0A BF 0C 19 0C 19 00 11 04 18 50
+								39 00 00 21 CA 00 40 00 19 46 94 41 8F 44 44 50 50 5A 5A 64 64 32 32 11 00 01 01 0A 06 22 00 05 00 00 5A 5A 04
+								39 00 00 03 FB 54 54
+								39 00 00 21 C7 73 10 01 23 45 67 77 77 30 73 10 01 23 45 67 77 77 30 31 00 01 FF FF 40 22 22 43 00 00 00 00 00
+								39 00 00 21 80 FF FD F8 F5 F1 EE EA E8 E5 DA D1 BF AD 9D 90 83 78 77 6C 61 55 49 3D 2D 23 16 12 0F 0D 0A 07 04
+								39 00 00 21 81 FF FD F8 F5 F1 EE EA E8 E5 DA D1 BF AD 9D 90 83 78 77 6C 61 55 49 3D 2D 23 16 12 0F 0D 0A 07 04
+								39 00 00 21 82 FF FD F8 F5 F1 EE EA E8 E5 DA D1 BF AD 9D 90 83 78 77 6C 61 55 49 3D 2D 23 16 12 0F 0D 0A 07 04
+								39 00 00 0E 83 01 01 01 01 01 01 01 00 00 00 00 00 00
+								39 00 00 1C 84 0D DC 6A 22 64 2B AC 51 E0 0D DC 6A 22 64 2B AC 51 E0 0D DC 6A 22 64 2B AC 51 E0
+								39 00 00 03 F1 5A 59
+								39 00 00 03 F0 A5 A6
+								39 00 00 03 35 00 00
+								39 78 00 03 11 00 00
+								39 20 00 03 29 00 00
+								39 05 00 03 6D 02 00
+
+						];
+					sprd,sleep-in-command = [
+								39 00 00 03 F0 5A 59
+								39 00 00 03 F1 A5 A6
+								39 00 00 09 BB 01 02 03 0A 04 13 14 00
+								39 00 00 03 6D 25 00
+								39 0A 00 03 28 00 00
+								39 78 00 03 10 00 00
+								39 00 00 03 F1 5A 59
+								39 05 00 03 F0 A5 A6
+						];
+					sprd,sleep-out-command = [
+								39 00 00 03 F0 5A 59
+								39 00 00 03 F1 A5 A6
+								39 00 00 09 BB 01 02 03 0A 04 13 14 00
+								39 78 00 03 11 00 00
+								39 0A 00 03 29 00 00
+								39 00 00 03 6D 02 00
+								39 00 00 03 F1 5A 59
+								39 00 00 03 F0 A5 A6
+						];
+
+					display-timings {
+						native-mode = <&icnl9916_timing0>;
+
+						icnl9916_timing0:timing0 {
+							clock-frequency = <135000000>;
+							hactive = <720>;
+							vactive = <1612>;
+							hback-porch = <76>;
+							hfront-porch = <44>;
+							vback-porch = <32>;
+							vfront-porch = <1020>;
+							hsync-len = <4>;
+							vsync-len = <4>;
+						};
+						icnl9916_timing1:timing1 {
+							clock-frequency = <135000000>;
+							hactive = <720>;
+							vactive = <1612>;
+							hback-porch = <24>;
+							hfront-porch = <24>;
+							vback-porch = <32>;
+							vfront-porch = <300>;
+							hsync-len = <4>;
+							vsync-len = <4>;
+						};
+					};
+				};
+			};
+		};
+	};
+};

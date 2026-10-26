@@ -1,0 +1,170 @@
+/ {
+	fragment {
+		target-path = "/";
+		__overlay__ {
+ lcds {
+	lcd_coe_gc9503p_boe_mipi_480p_no_sale: lcd_coe_gc9503p_boe_mipi_480p_no_sale {
+		zte,lcd-init-code-version = "20220614_v0";
+		zte,lcd-backlight-register-bit-length = <0x08>;
+		zte,lcm_backlight_curve_mode = "lcd_brightness_max_350_lux";
+		sprd,dsi-work-mode = <1>; /* video burst mode*/
+		sprd,dsi-lane-number = <2>;
+		sprd,dsi-color-format = "rgb888";
+		zte,lcd-disable-ssc;
+
+		sprd,phy-bit-clock = <452000>;  /* kbps */
+		sprd,phy-escape-clock = <20000>;/* kHz */
+
+		sprd,width-mm = <68040>;
+		sprd,height-mm = <136080>;
+		zte,panel-name = "lcd_coe_gc9503p_boe_480p_no_sale";
+
+		/* special esd check */
+		sprd,esd-check-enable = <1>;
+		sprd,esd-check-mode = <3>; /* 0:REG 1:TE 2:Special */
+		sprd,esd-check-period = <2000>;
+
+		sprd,reset-on-sequence = <1 5>, <0 5>, <1 25>;
+		sprd,reset-off-sequence = <1  5>;
+
+		zte,lcd-close-dynamic-dimming;
+		zte,lcd-delay-open-bl-value = <55>;
+
+		sprd,initial-command = [
+39 00 00 06 F0 55 AA 52 08 00
+39 00 00 03 F6 5A 87
+39 00 00 02 C1 3F
+39 00 00 02 C2 07
+39 00 00 02 C6 F8
+39 00 00 02 C9 10
+39 00 00 02 CD 25
+39 00 00 05 86 99 A3 A3 51
+39 00 00 02 F8 8A
+39 00 00 02 AC 45
+39 00 00 02 A7 47
+39 00 00 02 A0 EE
+39 00 00 05 FA 08 08 00 04
+39 00 00 02 A3 22
+39 00 00 04 FD 3C 3C 00
+39 00 00 02 71 48
+39 00 00 02 72 48
+39 00 00 02 97 EE
+39 00 00 02 B1 10
+39 00 00 03 7A 13 1A
+39 00 00 03 7B 13 1A
+39 00 00 21 6D 1E 1F 08 02 1E 00 1D 0E 10 0A 0C 1E 1E 1E 1E 1E 1E 1E 1E 1E 1E 0B 09 0F 0D 1D 00 1E 07 01 1F 1E
+39 00 00 11 64 38 08 03 bf 03 03 38 07 03 c0 03 03 2e 7A 2e 7A
+39 00 00 11 65 38 06 03 c1 03 03 38 05 03 c2 03 03 2e 7A 2e 7A
+39 00 00 11 66 38 04 03 c3 03 03 38 03 03 c4 03 03 2e 7A 2e 7A
+39 00 00 11 67 38 02 03 c5 03 03 38 01 03 c6 03 03 2e 7A 2e 7A
+39 00 00 09 60 38 0B 7A 7A 38 0A 7A 7A
+39 00 00 09 63 38 09 7A 7A 38 08 7A 7A
+39 00 00 08 69 14 22 14 22 44 22 08
+39 00 00 02 6B 07
+39 00 00 35 D1 00 00 00 3B 00 80 00 C0 00 E0 01 08 01 2E 01 70 01 A0 01 E8 02 24 02 83 02 CA 02 CC 03 06 03 4C 03 7B 03 A6 03 B8 03 DA 03 E5 03 E8 03 F0 03 F5 03 FE 03 FF
+39 00 00 35 D2 00 00 00 3B 00 80 00 C0 00 E0 01 08 01 2E 01 70 01 A0 01 E8 02 24 02 83 02 CA 02 CC 03 06 03 4C 03 7B 03 A6 03 B8 03 DA 03 E5 03 E8 03 F0 03 F5 03 FE 03 FF
+39 00 00 35 D3 00 00 00 3B 00 80 00 C0 00 E0 01 08 01 2E 01 70 01 A0 01 E8 02 24 02 83 02 CA 02 CC 03 06 03 4C 03 7B 03 A6 03 B8 03 DA 03 E5 03 E8 03 F0 03 F5 03 FE 03 FF
+39 00 00 35 D4 00 00 00 3B 00 80 00 C0 00 E0 01 08 01 2E 01 70 01 A0 01 E8 02 24 02 83 02 CA 02 CC 03 06 03 4C 03 7B 03 A6 03 B8 03 DA 03 E5 03 E8 03 F0 03 F5 03 FE 03 FF
+39 00 00 35 D5 00 00 00 3B 00 80 00 C0 00 E0 01 08 01 2E 01 70 01 A0 01 E8 02 24 02 83 02 CA 02 CC 03 06 03 4C 03 7B 03 A6 03 B8 03 DA 03 E5 03 E8 03 F0 03 F5 03 FE 03 FF
+39 00 00 35 D6 00 00 00 3B 00 80 00 C0 00 E0 01 08 01 2E 01 70 01 A0 01 E8 02 24 02 83 02 CA 02 CC 03 06 03 4C 03 7B 03 A6 03 B8 03 DA 03 E5 03 E8 03 F0 03 F5 03 FE 03 FF
+23 64 00 02 11 00
+39 00 00 03 B8 00 02
+23 00 00 02 51 00
+23 00 00 02 53 2C
+23 00 00 02 55 01
+23 0a 00 02 29 00
+			];
+		sprd,sleep-in-command = [
+				23 14 00 02 6C 60
+				23 00 00 02 B1 00
+				39 14 00 05 FA 7F 00 00 00
+				23 0a 00 02 6c 50
+				23 32 00 02 28 00
+				23 78 00 02 10 00
+				39 00 00 06 F0 55 aa 52 08 00
+				23 00 00 02 c2 ce
+				23 00 00 02 c3 cd
+				23 00 00 02 c6 fc
+				23 00 00 02 c5 03
+				23 00 00 02 cd 64
+				23 00 00 02 c4 ff
+				23 00 00 02 c9 cd
+				39 00 00 03 F6 5a 87
+				39 00 00 04 Fd aa aa 0a
+				39 00 00 03 Fe 6a 0a
+				39 00 00 03 78 2a aa
+				39 00 00 03 92 17 08
+				39 00 00 03 77 aa 2a
+				39 00 00 03 76 aa aa
+				23 00 00 02 84 00
+				39 00 00 03 78 2b ba
+				23 00 00 02 89 73
+				23 00 00 02 88 3A
+				23 00 00 02 85 B0
+				39 00 00 03 76 eb aa
+				23 00 00 02 94 80
+				39 00 00 04 87 04 07 30
+				23 00 00 02 93 27
+				23 00 00 02 af 02
+			];
+		sprd,sleep-out-command = [
+39 00 00 06 F0 55 AA 52 08 00
+39 00 00 03 F6 5A 87
+39 00 00 02 C1 3F
+39 00 00 02 C2 07
+39 00 00 02 C6 F8
+39 00 00 02 C9 10
+39 00 00 02 CD 25
+39 00 00 05 86 99 A3 A3 51
+39 00 00 02 F8 8A
+39 00 00 02 AC 45
+39 00 00 02 A7 47
+39 00 00 02 A0 EE
+39 00 00 05 FA 08 08 00 04
+39 00 00 02 A3 22
+39 00 00 04 FD 3C 3C 00
+39 00 00 02 71 48
+39 00 00 02 72 48
+39 00 00 02 97 EE
+39 00 00 02 B1 10
+39 00 00 03 7A 13 1A
+39 00 00 03 7B 13 1A
+39 00 00 21 6D 1E 1F 08 02 1E 00 1D 0E 10 0A 0C 1E 1E 1E 1E 1E 1E 1E 1E 1E 1E 0B 09 0F 0D 1D 00 1E 07 01 1F 1E
+39 00 00 11 64 38 08 03 bf 03 03 38 07 03 c0 03 03 2e 7A 2e 7A
+39 00 00 11 65 38 06 03 c1 03 03 38 05 03 c2 03 03 2e 7A 2e 7A
+39 00 00 11 66 38 04 03 c3 03 03 38 03 03 c4 03 03 2e 7A 2e 7A
+39 00 00 11 67 38 02 03 c5 03 03 38 01 03 c6 03 03 2e 7A 2e 7A
+39 00 00 09 60 38 0B 7A 7A 38 0A 7A 7A
+39 00 00 09 63 38 09 7A 7A 38 08 7A 7A
+39 00 00 08 69 14 22 14 22 44 22 08
+39 00 00 02 6B 07
+23 00 00 02 38 00
+23 00 00 02 11 00
+23 00 00 02 29 00
+/*23 00 00 02 BA 00*/
+			];
+
+		display-timings {
+			timing0 {
+				clock-frequency = <32000000>;
+				hactive = <480>;
+				vactive = <960>;
+				hback-porch = <24>;
+				hfront-porch = <16>;
+				vback-porch = <32>;
+				vfront-porch = <12>;
+				hsync-len = <4>;
+				vsync-len = <4>;
+			};
+		};
+		oled-backlight {
+			default-brightness-level = <102>;
+			sprd,max-level = <255>;
+			brightness-levels = [
+				23 00 00 02 51 00
+				23 00 00 02 53 2C
+			];
+		};
+	};
+};};
+};};

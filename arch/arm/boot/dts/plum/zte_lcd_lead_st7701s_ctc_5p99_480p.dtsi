@@ -1,0 +1,121 @@
+/ { 
+	fragment {
+		target-path = "/";
+		__overlay__ {
+lcds {
+	lcd_lead_st7701s_ctc_mipi_wvga_no_sale: lcd_lead_st7701s_ctc_mipi_wvga_no_sale {
+		zte,lcd-init-code-version = "20210823v1";
+		zte,lcd-backlight-register-bit-length = <0x08>;
+		zte,lcm_backlight_curve_mode = "lcd_brightness_max_350_lux";
+		sprd,dsi-work-mode = <1>; /* video burst mode*/
+		sprd,dsi-lane-number = <2>;
+		sprd,dsi-color-format = "rgb888";
+		zte,lcd-disable-ssc;
+
+		sprd,phy-bit-clock = <452000>;  /* kbps */
+		sprd,phy-escape-clock = <20000>;/* kHz */
+
+		sprd,esd-check-enable = <1>;/* 0:close , 1:open */
+		sprd,esd-check-mode = <1>;/* 0:REG ,1:TE  */
+		sprd,esd-check-period = <1000>;
+
+		sprd,width-mm = <68040>;
+		sprd,height-mm = <136080>;
+		zte,panel-name = "lcd_lead_st7701s_ctc_5p99_480p_no_sale";
+
+		sprd,reset-on-sequence = <1 5>, <0 5>, <1 120>;
+		sprd,reset-off-sequence = <0  120>;
+
+		zte,lcd-close-dynamic-dimming;
+		zte,lcd-delay-open-bl-value = <34>;
+
+		sprd,initial-command = [
+				39 00 00 06 FF 77 01 00 00 13
+				39 00 00 02 EF 08
+				39 00 00 06 FF 77 01 00 00 10
+				39 00 00 03 C0 F7 00
+				39 00 00 03 C1 07 0C
+				39 00 00 03 C2 07 02
+				39 00 00 02 C6 21
+				39 00 00 02 CC 30
+				39 00 00 02 BB 00
+				39 00 00 02 CA 11
+				39 00 00 02 BC 01
+				39 00 00 11 B0 C0 07 52 0D 11 05 00 06 06 19 03 13 13 1F A3 46
+				39 00 00 11 B1 C0 06 51 0D 50 07 02 09 08 1D 07 16 12 23 A8 CA
+				39 00 00 06 FF 77 01 00 00 11
+				39 00 00 02 B0 89
+				39 00 00 02 B1 3F
+				39 00 00 02 B2 87
+				39 00 00 02 B3 80
+				39 00 00 02 B5 42
+				39 00 00 02 B7 87
+				39 00 00 02 B8 21
+				39 00 00 02 B9 10
+				39 00 00 02 BA 00
+				39 00 00 02 BB 00
+				39 00 00 02 BC 00
+				39 00 00 02 C0 87
+				39 00 00 02 C1 08
+				39 00 00 02 C2 78
+				39 0A 00 02 D0 88
+				39 00 00 04 E0 80 00 02
+				39 00 00 0C E1 02 8C 00 00 01 8C 00 00 00 20 20
+				39 00 00 0D E2 30 30 20 20 C8 8C 00 00 C7 8C 00 00
+				39 00 00 05 E3 00 00 33 33
+				39 00 00 03 E4 44 44
+				39 00 00 11 E5 04 C8 8C 8C 06 CA 8C 8C 08 C4 8C 8C 0A C6 8C 8C
+				39 00 00 05 E6 00 00 33 33
+				39 00 00 03 E7 44 44
+				39 00 00 11 E8 03 C7 8C 8C 05 C9 8C 8C 07 C3 8C 8C 09 C5 8C 8C
+				39 00 00 08 EB 00 02 E4 E4 88 00 00
+				39 00 00 11 ED 2F 0B A4 56 7F FF FF FF FF FF FF F7 65 4A B0 F2
+				39 00 00 05 EF 10 10 04 08
+				39 00 00 06 FF 77 01 00 00 13
+				39 00 00 03 E8 00 0E
+				39 00 00 06 FF 77 01 00 00 00
+				23 78 00 02 11 00
+				39 00 00 06 FF 77 01 00 00 13
+				39 0A 00 03 E8 00 0C
+				39 00 00 03 E8 00 00
+				39 00 00 06 FF 77 01 00 00 00
+				39 00 00 02 51 00
+				39 00 00 02 53 04
+				39 00 00 02 55 00
+				39 00 00 02 36 00
+				39 00 00 02 35 00
+				23 0A 00 02 29 00
+			];
+		sprd,sleep-in-command = [
+			13 0A 00 01 28
+			13 78 00 01 10
+			];
+		sprd,sleep-out-command = [
+			13 78 00 01 11
+			13 64 00 01 29
+			];
+
+		display-timings {
+			lcd_lead_st7701s_ctc_mipi_wvga_timing0: timing0 {
+				clock-frequency = <32000000>;
+				hactive = <480>;
+				vactive = <960>;
+				hback-porch = <10>;
+				hfront-porch = <10>;
+				vback-porch = <68>;
+				vfront-porch = <68>;
+				hsync-len = <8>;
+				vsync-len = <8>;
+			};
+		};
+		oled-backlight {
+			default-brightness-level = <102>;
+			sprd,max-level = <255>;
+			brightness-levels = [
+				23 00 00 02 51 00
+				23 00 00 02 53 2C
+			];
+		};
+	};
+};};
+};};

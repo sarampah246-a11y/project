@@ -1,0 +1,18 @@
+/*
+ * this file is ued to change sprd dtsi which can't be changed by overlay
+ * such as /delete-node/ /delete-property/ and alises
+ */
+
+#include "touchscreen_lavender.dtsi"
+#include "zte_charger_lavender.dtsi"
+#include "zte_fingerprint_lavender.dtsi"
+#include "zte_camera_lavender.dtsi"
+#include "zte_audio_lavender.dtsi"
+
+
+/{
+	zcard_holder_det {
+		zcard-holder-det-gpios= <&eic_sync 36 GPIO_ACTIVE_HIGH>;
+	};
+};
+

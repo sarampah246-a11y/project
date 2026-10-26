@@ -1,0 +1,26 @@
+/{
+	zte_tp:zte_tp {
+		compatible = "zte_tp";
+		zte,tp_algo;
+		zte,tp_long_press;
+		zte,tp_long_press_timer = <800>;
+		zte,tp_long_press_left_v = <12>;
+		zte,tp_long_press_right_v = <12>;
+		zte,tp_long_press_left_h = <16>; /*camera */
+		zte,tp_long_press_right_h = <12>; /*charger */
+		zte,tp_edge_click_suppression_pixel = <2>;
+	};
+};
+
+&i2c3 {
+	status = "okay";
+	clock-frequency = <400000>;
+	chipone_tddi@58 {
+		compatible = "chipone-tddi";
+		reg = <0x58>;
+		chipone,rst-gpio = <&ap_gpio 145 0>;
+		chipone,irq-gpio = <&ap_gpio 144 0>;
+		chipone,x-res = <719>;
+		chipone,y-res = <1599>;
+	};
+};

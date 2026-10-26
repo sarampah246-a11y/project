@@ -1,0 +1,125 @@
+/ {
+	fragment {
+		target-path = "/";
+		__overlay__ {
+ lcds{
+	icnl9911c2_easyquick_boe_6p517_chipone: icnl9911c2_easyquick_boe_6p517_chipone {
+		zte,lcd-init-code-version = "20221214";
+		zte,lcd-backlight-register-bit-length = <0x0C>;
+		zte,lcd-cabc-default-value = <0x01>;
+		zte,lcd-cabc-off-command = [23 00 00 02 55 00];
+		zte,lcd-cabc-low-command = [23 00 00 02 55 01];
+		zte,lcd-cabc-medium-command = [23 00 00 02 55 02];
+		zte,lcd-cabc-high-command = [23 00 00 02 55 03];
+		zte,lcm_backlight_curve_mode = "lcd_brightness_max_450_lux";
+		zte,lcd_bl_vsp_vsn_voltage = <0x14>;
+		zte,panel-name = "icnl9911c2_easyquick_boe_6p517_chipone";
+		zte,lcd-delay-open-bl-value = <17>;
+
+		sprd,dsi-work-mode = <1>; /* video burst mode*/
+		sprd,dsi-lane-number = <4>;
+		sprd,dsi-color-format = "rgb888";
+
+		sprd,phy-bit-clock = <700000>;	/* kbps */
+		sprd,phy-escape-clock = <20000>;/* kHz */
+
+		sprd,width-mm = <67932>;
+		sprd,height-mm = <150960>;
+
+		sprd,esd-check-enable = <1>;/* 0:close , 1:open */
+		sprd,esd-check-mode = <1>;/* 0:REG ,1:TE  */
+		sprd,esd-check-period = <1000>;
+		sprd,esd-check-register = <0x0A>;
+		sprd,esd-check-value = <0x9C>;
+
+		sprd,reset-on-sequence = <1 5>, <0 10>, <1 35>;
+		sprd,reset-off-sequence = <1 5>;
+		sprd,initial-command = [
+			39 00 00 03 F0 5A 59
+			39 00 00 03 F1 A5 A6
+			39 00 00 1C B0 89 88 87 86 02 03 04 05 33 33 33 33
+						05 01 01 94 01 00 0F 85 04 03 02 01 02 03 04
+			39 00 00 21 B1 53 42 85 81 05 01 01 94 01 00 04 08 54 00
+						00 00 44 40 02 01 40 02 01 40 02 01 40 02 01 00 00 00
+			39 00 00 12 B2 54 C4 82 05 40 02 01 40 02 01 05 05 54 0C 0C 0D 0B
+			39 00 00 21 B3 02 0D 08 0E 08 26 26 91 A2 33 44 00 26 00
+						18 01 02 08 20 30 0E 09 42 20 00 20 40 08 09 22 33 00
+			39 00 00 1D B4 43 1D 23 00 04 06 1C C1 10 12 0C 0E 43 43 43 43 43
+						43 43 43 43 43 FF FF FC 60 00 00
+			39 00 00 1D B5 43 1D 23 00 05 07 1C C1 11 13 0D 0F 43 43 43 43 43
+						43 43 43 43 43 FF FF FC 60 00 00
+			39 00 00 19 B8 54 57 55 55 55 55 54 57 55 55 55 55 00 00 00 00 00
+						00 00 00 00 00 00 00
+			39 00 00 0E BB 01 05 09 11 0D 19 1D 55 25 69 00 21 25
+			39 00 00 0F BC 00 00 00 00 02 20 FF 00 03 33 01 73 33 00
+			39 00 00 0B BD E9 02 4E CF 72 A4 08 44 AE 15
+			39 00 00 0B BE 68 7C 46 5A 0C 77 43 07 0E 0E
+			39 00 00 09 BF 07 25 07 25 7F 00 11 04
+			39 00 00 0A C0 10 FF FF FF FF FF 00 FF 00
+			39 00 00 14 C1 C0 20 20 96 04 54 54 04 2A 40 36
+						00 07 CF FF FF BA 01 C0
+			39 00 00 0A C2 CC 01 10 00 01 30 02 21 43
+			39 00 00 0A C3 01 00 FF 00 FF 00 00 81 01
+			39 00 00 0B C4 84 01 2B 41 00 3C 00 03 03 2E
+			39 00 00 0C C5 03 1C B8 B8 30 10 64 44 05 0A 14
+			39 00 00 0B C6 87 A0 2A 29 29 33 64 37 08 04
+			39 00 00 17 c7 ff d3 b0 9b 70 50 1f 6f 34 06 d8 a3 f7 cc ad 84 6b 49 00 7f e0 00
+			39 00 00 17 c8 ff d3 b0 9b 70 50 1f 6f 34 06 d8 a3 f7 cc ad 84 6b 49 00 7f e0 00
+			39 00 00 07 C9 43 00 1F FF 3F 03
+			15 00 00 02 CB 00
+			39 00 00 09 D0 80 0D FF 0F 61 0B 08 0C
+			39 00 00 0E D2 42 0C 30 01 80 26 04 00 00 C3 00 00 00
+			39 00 00 18 E1 EF FE FE FE FE EE F0 20 33 FF 00
+						00 6A 90 C0 0D 6A F0 3E FF 00 07 D0
+			39 00 00 1B E0 30 00 80 88 11 3F 22 62 DF A0 04
+						CC 01 FF F6 FF F0 FD FF FD F8 F5 FC FC FD FF
+			39 00 00 04 EA 46 50 00
+			39 00 00 04 FA 45 93 01
+			39 00 00 05 FE FF FF FF 50
+			39 00 00 03 F1 5A 59
+			39 00 00 03 F0 A5 A6
+			15 00 00 02 35 00
+			39 00 00 03 51 00 00
+			39 00 00 02 53 24
+			39 00 00 02 55 00
+			05 78 00 01 11
+			05 14 00 01 29
+			15 0A 00 02 26 01
+			];
+		sprd,sleep-in-command = [
+			39 00 00 03 51 00 00
+			15 00 00 02 26 08
+			13 0A 00 01 28
+			13 78 00 01 10
+			];
+		sprd,sleep-out-command = [
+			13 78 00 01 11
+			13 14 00 01 29
+			];
+
+		display-timings {
+			lcd_icnl9911c2_easyquick_hd_timing0: timing0 {
+			clock-frequency = <96000000>;
+			hactive = <720>;
+			vactive = <1600>;
+			hback-porch = <84>;
+			hfront-porch = <84>;
+			vback-porch = <32>;
+			vfront-porch = <150>;
+			hsync-len = <4>;
+			vsync-len = <4>;
+			};
+		};
+
+		oled-backlight {
+			default-brightness-level = <1632>;
+			sprd,max-level = <4095>;
+			brightness-levels = [
+				39 00 00 03 51 00 00
+				39 00 00 02 53 2C
+			];
+		};
+	};
+};};
+};};
+

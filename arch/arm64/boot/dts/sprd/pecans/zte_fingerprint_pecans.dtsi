@@ -1,0 +1,31 @@
+/ {
+	fpc1020 {
+		compatible = "fpc,fpc1020";
+		#fpc_irq = <&ap_gpio 168 0x00>;
+		fpc_irq = <&eic_async 29 0x00>;
+		fpc_rst = <&ap_gpio 169 0x00>;
+		vdd-supply = <&vddldo1>;
+		power-type = <1>;
+		power-voltage = <3000000>;
+	};
+
+	goodix_fp {
+		compatible = "goodix,fingerprint";
+		fp-gpio-reset = <&ap_gpio 169 0x00>;
+		#fp-gpio-irq = <&ap_gpio 168 0x00>;
+		fp-gpio-irq = <&eic_async 29 0x00>;
+		vdd-supply = <&vddldo1>;
+		power-type = <1>;
+		power-voltage = <3000000>;
+	};
+
+	silead_fp {
+		compatible = "sil,silead_fp";
+		rst-gpios = <&ap_gpio 169 0x00>;
+		#irq-gpios = <&ap_gpio 109 0x00>;
+		irq-gpios = <&eic_async 29 0x00>;
+		vdd-supply = <&vddldo1>;
+		power-type = <1>;
+		power-voltage = <3000000>;
+	};
+};

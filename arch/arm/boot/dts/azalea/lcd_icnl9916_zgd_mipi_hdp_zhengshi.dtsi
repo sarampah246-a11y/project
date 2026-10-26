@@ -1,0 +1,116 @@
+/ { 
+	fragment {
+		target-path = "/";
+		__overlay__ {
+			lcds {
+				lcd_zgd_chipone_icnl9916_zgd_mipi_hdp_zhengshi: lcd_zgd_chipone_icnl9916_zgd_mipi_hdp_zhengshi {
+					zte,lcd-init-code-version = "20230819_v0";
+					zte,lcd-backlight-register-bit-length = <0x0C>;
+					zte,panel-name = "lcd_zgd_chipone_icnl9916_zgd_mipi_hdp_zhengshi";
+					zte,lcd-delay-open-bl-value = <34>;
+					sprd,dsi-work-mode = <1>;
+					sprd,dsi-lane-number = <4>;
+					sprd,dsi-color-format = "rgb888";
+					sprd,phy-bit-clock = <691000>;
+					sprd,phy-escape-clock = <20000>;
+					sprd,width-mm = <68>;
+					sprd,height-mm = <152>;
+					sprd,esd-check-enable = <1>;
+					sprd,esd-check-mode = <1>;
+					sprd,esd-check-period = <2000>;
+					sprd,esd-check-register = <0x0A>;
+					sprd,esd-check-value = <0x9C>;
+					sprd,lcm-ic-name = "ICNL9916-AC-02";
+					sprd,lcm-ic-vendor = "ZGD-szceo";
+					sprd,lcm-ic-inch = "6.56";
+					sprd,reset-on-sequence = <1 15>, <0 15>, <1 50>;
+					sprd,reset-off-sequence = <1 20>;
+					sprd,initial-command = [				
+						39 00 00 03 F0 5A 59
+						39 00 00 03 F1 A5 A6
+						15 00 00 02 D4 31
+						39 00 00 05 C0 40 93 00 1F
+						39 00 00 21 C1 00 20 20 D2 04 44 44 04 4C 06 12 70 35 35 07 11 84 4C 00 93 18 8F 04 00 00 00 00 00 00 00 00 00
+						15 00 00 02 C2 00
+						39 00 00 21 C4 04 33 B8 40 00 BC 00 E0 00 00 00 26 48 91 B3 75 00 04 E0 20 F0 00 00 00 00 00 00 00 00 00 00 00
+						39 00 00 21 C5 03 24 96 C8 3E 00 05 02 12 0C 00 32 3F 08 01 3F 10 20 C8 03 55 FF 01 14 38 7F 00 00 00 00 00 00
+						39 00 00 21 C6 5E 1F 15 2B 2B 28 3F 03 16 16 00 11 40 00 98 98 60 80 0C 00 00 00 00 00 00 00 00 00 00 00 00 00
+						39 00 00 21 B2 95 96 05 04 FF 22 10 0C 88 80 80 80 80 00 00 00 00 B2 B0 B2 B0 00 00 00 00 55 55 10 20 11 00 00
+						39 00 00 21 B3 F7 09 09 09 81 C8 00 00 B0 00 00 00 08 44 0C 00 00 03 00 00 0C 00 00 03 00 00 55 55 55 55 55 55
+						39 00 00 21 B4 31 01 01 01 81 00 00 00 00 00 00 00 08 00 0C 00 00 03 00 00 0C 00 00 03 00 00 55 55 55 55 55 55
+						39 00 00 21 B5 00 19 0A 19 0A C6 26 01 A2 33 44 00 26 00 59 7C 02 08 30 30 50 20 40 12 00 00 00 00 00 00 00 00
+						39 00 00 21 B6 00 00 33 00 04 08 0C 0E 10 12 14 16 18 1A 32 32 00 00 00 00 00 00 7F FF 00 20 03 00 00 00 00 00
+						39 00 00 21 B7 00 00 33 00 05 09 0D 0F 11 13 15 17 19 1B 32 32 00 00 00 00 00 00 7F FF 00 20 03 00 00 00 00 00
+						39 00 00 0d B8 55 55 55 55 55 55 55 55 55 55 55 55
+						39 00 00 21 B9 01 15 55 55 55 00 00 15 55 55 55 00 00 AA AA AA AA AA A0 AA AA AA AA AA A0 00 00 00 00 00 00 00
+						39 00 00 21 BC 00 00 00 00 04 00 FF F0 0B 32 50 49 33 33 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+						39 00 00 07 BD A1 A2 52 2E 00 8F
+						39 00 00 09 BB 01 02 03 0A 04 13 14 00
+						39 00 00 03 BE 0C 88
+						39 00 00 0A BF 0C 19 0C 19 00 11 04 18 50
+						39 00 00 21 CA 00 40 00 19 46 94 41 8F 44 44 50 50 5A 5A 64 64 32 32 11 00 01 01 0A 06 22 00 05 00 00 46 5A 04
+						39 00 00 03 FB 40 54
+						39 00 00 21 C7 73 10 01 23 45 67 77 77 30 73 10 01 23 45 67 77 77 30 31 00 01 FF FF 40 18 18 43 00 00 00 00 00
+						39 00 00 04 C8 46 00 49
+						39 00 00 08 E0 0C 00 B0 10 00 C4 09
+						
+						39 00 00 03 F1 5A 59
+						39 00 00 03 F0 A5 A6
+						39 00 00 03 35 00 00
+						39 00 00 03 51 00 00
+						39 00 00 03 53 2C 00
+						39 78 00 03 11 00 00
+						39 0A 00 03 29 00 00
+						39 01 00 03 6D 02 00
+					];
+					sprd,sleep-in-command = [
+						39 00 00 03 F0 5A 59
+						39 00 00 03 F1 A5 A6
+						39 00 00 09 BB 01 02 03 0A 04 13 14 00
+						39 00 00 03 F1 5A 59
+						39 00 00 03 F0 A5 A6
+						39 00 00 03 6D 25 00
+						39 0A 00 03 28 00 00
+						39 78 00 03 10 00 00
+	
+					];
+					sprd,sleep-out-command = [
+						39 00 00 03 F0 5A 59
+						39 00 00 03 F1 A5 A6
+						39 00 00 09 BB 01 02 03 0A 04 13 14 00
+						39 00 00 03 F1 5A 59
+						39 00 00 03 F0 A5 A6
+						39 78 00 03 11 00 00
+						39 0A 00 03 29 00 00
+						39 00 00 03 6D 02 00
+					];
+					sprd,sleep-in-command2 = [
+						39 0A 00 03 28 00 00
+					];
+					display-timings {
+						timing0{
+							clock-frequency = <96000000>;
+							hactive = <720>;
+							vactive = <1612>;
+							hfront-porch = <68>;
+							hback-porch = <68>;
+							hsync-len = <4>;
+							vfront-porch = <210>;
+							vback-porch = <32>;
+							vsync-len = <4>;
+						};
+					};
+			   /*#include "./blacklight_params_zhengshi.dtsi"*/
+				oled-backlight {
+					default-brightness-level = <1632>;
+					sprd,max-level = <4095>;
+					brightness-levels = [
+						39 00 00 03 51 00 00
+						39 00 00 02 53 2C
+						];
+					};
+				};
+			};
+		};
+	};
+};

@@ -1,0 +1,105 @@
+/ {
+	fragment {
+		target-path = "/";
+		__overlay__ {
+ lcds {
+	st7123_easyquick_6p517_sitronix: st7123_easyquick_6p517_sitronix {
+		zte,lcd-init-code-version = "20221220";
+		zte,lcd-backlight-register-bit-length = <0x0C>;
+		zte,lcd-cabc-default-value = <0x01>;
+		zte,lcd-cabc-off-command = [23 00 00 02 55 00];
+		zte,lcd-cabc-low-command = [23 00 00 02 55 01];
+		zte,lcd-cabc-medium-command = [23 00 00 02 55 02];
+		zte,lcd-cabc-high-command = [23 00 00 02 55 03];
+		zte,lcm_backlight_curve_mode = "lcd_brightness_max_450_lux";
+		zte,lcd_bl_vsp_vsn_voltage = <0x14>;
+		zte,lcd-close-dynamic-dimming;
+		zte,panel-name = "st7123_easyquick_6p517_sitronix";
+		zte,lcd-delay-open-bl-value = <34>;
+
+		sprd,dsi-work-mode = <1>; /* video burst mode*/
+		sprd,dsi-lane-number = <4>;
+		sprd,dsi-color-format = "rgb888";
+
+		sprd,phy-bit-clock = <700000>;	/* kbps */
+		sprd,phy-escape-clock = <20000>;/* kHz */
+
+		sprd,width-mm = <67932>;
+		sprd,height-mm = <150960>;
+
+		sprd,esd-check-enable = <1>;/* 0:close , 1:open */
+		sprd,esd-check-mode = <1>;/* 0:REG ,1:TE  */
+		sprd,esd-check-period = <1000>;
+		sprd,esd-check-register = <0x0A>;
+		sprd,esd-check-value = <0x9C>;
+
+		sprd,reset-on-sequence = <1 10>, <0 10>, <1 35>;
+		sprd,reset-off-sequence = <1 5>;
+		sprd,initial-command = [
+			29 00 00 04 60 71 23 a2
+			29 00 00 04 60 71 23 a3
+			29 00 00 04 60 71 23 a4
+			29 00 00 02 CF 18
+			29 00 00 07 85 48 87 E7 04 87 46
+			29 00 00 0d 86 A5 19 40 15 F5 01 00 A5 D9 55 F5 0D
+			29 00 00 07 d7 00 13 DC BB 20 20
+			29 00 00 10 B2 15 19 05 23 41 FF 03 52 68 D2 FF 10 20 E9 10
+			29 00 00 06 E8 20 6A 04 78 78
+			29 00 00 07 b7 00 00 64 64 44 1A
+			29 00 00 08 B0 22 57 11 75 25 2F 2F
+			29 00 00 28 A3 88 01 8C 00 05 00 00 00 00 00 46 00 00 1E 5C 1E 80 00 6F 45 00 00 00 00 00 46 00 00 1E 5C 1E 80 00 20 58 00 00 00 FF
+			29 00 00 33 A6 5E 18 24 77 34 00 00 03 4B 4B 91 FF 08 24 77 35 00 00 02 4B 4B 91 FF 58 E4 55 07 09 07 09 4B 4B 91 FF 07 DB 55 07 09 07 09 4B 4B FF FF 00 08 80 08 80
+			29 00 00 3d A7 19 19 81 64 40 07 16 40 00 40 03 4B 4B 91 FF 08 88 64 40 25 34 40 00 02 01 4B 4B 91 FF 08 88 64 00 4B C3 46 0E 0D 05 FF 90 91 FF 00 80 64 00 69 E1 08 10 2B 03 FF 90 91 FF F0 80 44
+			29 00 00 28 AC 00 00 1C 1C 04 01 18 19 06 09 0B 12 10 02 00 00 00 00 00 00 00 00 00 00 1C 1C 04 03 18 19 06 08 0A 13 11 00 00 00 00
+			29 00 00 1a AD 00 00 46 07 09 00 00 ff ff 00 00 02 00 00 00 00 ff ff 01 00 00 ff ff ff ff
+			29 00 00 08 AE FC 3F 00 FC 3F 00 00
+			29 00 00 0b A9 00 00 73 FF 00 01 00 00 01 00
+			29 00 00 25 e7 3B 00 00 7C A1 8C 20 1A F0 B1 50 00 50 B1 50 B1 50 D8 00 55 00 B1 00 45 C9 6A FF 5A D8 38 88 15 B1 01 01 71
+			29 00 00 0b EA 16 00 FF 01 01 86 01 1E 80 40
+			29 00 00 02 75 29
+			29 00 00 03 89 00 00
+			29 00 00 02 BF 84
+			29 00 00 26 C8 00 00 07 0E 19 00 2E 3A 5D 04 10 BB 06 37 02 11 91 01 DC 0F 22 23 0F 77 08 32 EF 0B 53 0C F3 A2 03 CF ED 03 FF
+			29 00 00 26 C9 00 00 07 0E 19 00 2E 3A 5D 04 10 BB 06 37 02 11 91 01 DC 0F 22 23 0F 77 08 32 EF 0B 53 0C F3 A2 03 CF ED 03 F9
+			29 00 00 04 60 71 23 00
+			29 00 00 02 53 2C
+			29 00 00 03 51 00 00
+			29 78 00 02 11 00
+			29 14 00 02 29 00
+			29 0A 00 02 35 00
+			];
+		sprd,sleep-in-command = [
+			15 32 00 02 28 00
+			15 78 00 02 10 00
+			];
+		sprd,sleep-out-command = [
+			05 78 00 01 11
+			05 32 00 01 29
+			];
+
+		display-timings {
+			lcd_st7123_easyquick_hd_timing0: timing0 {
+			clock-frequency = <96000000>;
+			hactive = <720>;
+			vactive = <1600>;
+			hback-porch = <68>;
+			hfront-porch = <68>;
+			vback-porch = <28>;
+			vfront-porch = <220>;
+			hsync-len = <4>;
+			vsync-len = <6>;
+			};
+		};
+
+		oled-backlight {
+			default-brightness-level = <1632>;
+			sprd,max-level = <4095>;
+			brightness-levels = [
+				39 00 00 03 51 00 00
+				39 00 00 02 53 2C
+			];
+		};
+	};
+};};
+};};
+

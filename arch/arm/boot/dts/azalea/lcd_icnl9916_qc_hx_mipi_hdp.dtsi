@@ -1,0 +1,86 @@
+/ { 
+	fragment {
+		target-path = "/";
+		__overlay__ {
+			lcds {
+				lcd_zgd_chipone_icnl9916_qc_hx_mipi_hdp: lcd_zgd_chipone_icnl9916_qc_hx_mipi_hdp {
+					zte,lcd-init-code-version = "20230701";
+					zte,panel-name = "lcd_icnl9916_qc_hx_mipi_hdp";
+					zte,lcd-delay-open-bl-value = <34>;
+					sprd,dsi-work-mode = <1>;
+					sprd,dsi-lane-number = <4>;
+					sprd,dsi-color-format = "rgb888";
+
+					sprd,phy-bit-clock = <720000>;
+					sprd,phy-escape-clock = <20000>;
+
+					sprd,width-mm = <68>;
+					sprd,height-mm = <152>;
+
+					sprd,esd-check-enable = <0>;
+					sprd,esd-check-mode = <1>;
+					sprd,esd-check-period = <2000>;
+					sprd,esd-check-register = <0x0A>;
+					sprd,esd-check-value = <0x9C>;
+
+					sprd,lcm-ic-name = "ICNL9916";
+					sprd,lcm-ic-vendor = "TXD-HJC";
+					sprd,lcm-ic-inch = "6.56";
+
+					sprd,reset-on-sequence = <1 15>, <0 15>, <1 50>;
+					sprd,reset-off-sequence = <1 5>;
+
+					sprd,initial-command = [				
+						39 00 00 03 F0 5A 59
+						39 00 00 03 F1 A5 A6
+						39 00 00 15 C1 00 20 20 BE 04 48 48 04 4C 06 22 70 30 30 07 11 84 4C 00 93
+						39 00 00 05 C0 40 93 00 1F
+						39 00 00 09 BB 01 02 03 0A 04 13 14 12
+						23 00 00 02 C2 00
+						39 00 00 05 C8 46 00 C8 E2
+						39 00 00 04 C8 46 00 48
+						23 00 00 02 D2 DF
+						39 00 00 09 E0 0C 00 B0 10 00 C4 09 00
+			
+						39 00 00 21 E0 0C 00 B0 10 00 C4 09 00 0B 04 01 00 1F 00 00 00 00 00 00 00 1F 0F 09 12 48 42 E8 FF 10 00 00 00
+						39 00 00 21 E1 B6 10 20 30 40 50 60 70 80 90 A0 B0 C0 D0 E0 F0 F8 EF EC EF F4 F8 FB FB FD FF FF FF FF FF FF FF
+						39 00 00 21 E2 37 4C 37 E0 38 75 39 09 39 9E 3A 32 3A C7 3B 5B 3B F0 3C 84 3D 36 3D E8 3E 9B 3F 4D 3F FF 3F FF
+
+						39 00 00 03 F1 5A 59
+						39 00 00 03 F0 A5 A6
+						23 00 00 02 35 00 
+						23 00 00 03 51 0F FF
+						23 00 00 02 53 2C
+						23 00 00 02 55 01
+						23 78 00 02 11 00
+						23 14 00 02 29 00
+						23 00 00 02 6D 02
+					];
+					sprd,sleep-in-command = [
+						13 14 00 01 28
+						13 78 00 01 10		
+					];
+					sprd,sleep-out-command = [
+						13 78 00 01 11
+						13 14 00 01 29
+					];
+
+					display-timings {
+						timing0{
+							clock-frequency = <96000000>;
+							hactive = <720>;
+							vactive = <1612>;
+							hfront-porch = <72>;
+							hback-porch = <72>;
+							hsync-len = <4>;
+							vfront-porch = <190>;
+							vback-porch = <32>;
+							vsync-len = <4>;
+						};
+					};
+				#include "./blacklight_params.dtsi"
+				};
+			};
+		};
+	};
+};

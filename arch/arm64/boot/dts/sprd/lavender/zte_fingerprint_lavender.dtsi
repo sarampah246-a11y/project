@@ -1,0 +1,8 @@
+/ {
+	focaltech {
+		compatible = "focaltech,fp";
+		focaltech_fp,reset-gpio = <&ap_gpio 131 0>;
+		focaltech_fp,irq-gpio = <&eic_async 13 0 >;
+		focaltech_fp,vdd-gpio = <&ap_gpio 138 0 >;
+	};
+};

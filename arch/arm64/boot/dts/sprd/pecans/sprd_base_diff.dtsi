@@ -1,0 +1,16 @@
+/*
+ * this file is ued to change sprd dtsi which can't be changed by overlay
+ * such as /delete-node/ /delete-property/ and alises
+ */
+
+#include "touchscreen_pecans.dtsi"
+#include "zte_lcd.dtsi"
+#include "zte_charger_pecans.dtsi"
+#include "zte_fingerprint_pecans.dtsi"
+#include "zte_camera_pecans.dtsi"
+#include "zte_audio_pecans.dtsi"
+#include "zte_nfc_pn557.dtsi"
+
+&sdio3 {
+  sprd,phy-delay-mmc-highspeed = <0x7f 0x97 0x97 0x97>;
+};
